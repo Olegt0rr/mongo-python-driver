@@ -1029,6 +1029,14 @@ class MongoClient(common.BaseObject):
         server is available.
         """
         return self._server_property('is_writable')
+   
+    @property
+    def is_standalone(self):
+        """If this client is connected to standalone. If the client is not
+        connected, this will block until a connection is established or raise
+        ServerSelectionTimeoutError if no server is available..
+        """
+        return self._server_property('server_type') == SERVER_TYPE.Standalone
 
     @property
     def is_mongos(self):
